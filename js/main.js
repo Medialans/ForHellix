@@ -5,3 +5,4 @@ document.body.append(canvas)
 var ctx = canvas.getContext('2d')
 
 
+//testam inca
