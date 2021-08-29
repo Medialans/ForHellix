@@ -1,4 +1,4 @@
-import {Vector2} from '../Vectors/Vector.js'
+import {Vector2} from '../Vectors/Vector2.js'
 /**
  * Cream 2d masiv
  * @param {Vector2} mapSize marimea map

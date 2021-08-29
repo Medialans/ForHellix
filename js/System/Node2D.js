@@ -1,7 +1,8 @@
 import {IExecutable} from './Executable.js'
-import {Vector2,Rect} from '../Vectors/Vector.js'
+import {Vector2} from '../Vectors/Vector2.js'
+import {Rect} from '../Vectors/Rect.js'
 
-export class Node extends IExecutable{
+export class Node2D extends IExecutable{
   get w(){return this.Size.x}
   set w(value){this.Size.x=value}
   get h(){return this.Size.y}
@@ -20,7 +21,7 @@ export class Node extends IExecutable{
 }
 
 class NodeCollision{
-  /**@param {Node} node*/
+  /**@param {Node2D} node*/
   constructor(node){
     this.node = node
   }

@@ -1,5 +1,5 @@
 import {Listener} from '../System/Listener.js'
-import {Vector2} from '../Vectors/Vector.js'
+import {Vector2} from '../Vectors/Vector2.js'
 export class TouchControler extends Listener {
   static UP = "UP"
   static DOWN = "DOWN"

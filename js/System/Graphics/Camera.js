@@ -1,56 +1,39 @@
-class Camera extends Node{
-  /**@type {Camera}*/
-  static Main = null
+import {Node2D} from '../Node2D.js'
+/**
+ * Camera din aplicatie
+ */
+export class Camera extends Node2D{
+  
+  
+  /**Daca in Camera.Main = null atunci punem this */
   constructor(){
     super() 
     if(!Camera.Main)
       Camera.Main = this
-    
-    this.input = {
-      touch:new TouchControler()
-      .on('down',this.TouchDown.bind(this))
-      .on('up',this.TouchUp.bind(this))
-      .on('move',this.TouchMove.bind(this))
-    }
-    
-    this.Canvas = document.createElement('canvas')
-    this.Canvas.width = this.w
-    this.Canvas.height = this.h
-    
-    this.Context = this.Canvas.getContext('2d')
-    
-    document.body.append(this.Canvas)
-  }
+  }  
   
-  Start(){
-    if(this.init){
-      this.init.bind(this)
-    }
-    console.log(this.Listener);
-  }
-  TouchMove(e,c){
-    this.position = Vector2.fromTouch(e[0]).Minus(this.TSP)
-  }
-  TouchDown(e,c){
-    let mp = Vector2.fromTouch(e[0])
-    let cp = Camera.ScreenToWorldPosition(mp)
-    if(this.Collision.isInside(cp))
-      console.log("in");
-    this.TSP = mp.Minus(this.position)
-  }
-  TouchUp(e,c){
-  }
-  Update(){
-    
-    this.Draw(this.Context)
-  }
-
-  Draw(ctx){
-    ctx.clearRect(0,0,this.w,this.h)
-    ctx.beginPath()
-    ctx.rect(this.x,this.y,this.w,this.h) 
-    ctx.stroke()
-    ctx.closePath()
+  /**@type {Camera}*/
+  static Main = null
+  /**@type {null|HTMLCanvasElement}*/
+  static Canvas = null
+  /**@type {null|CanvasRenderingContext2D} */
+  static Context = null
+  /**
+   * @param {number} w 
+   * @param {number} h 
+   * @param {null|string} location unde se va pune canvasul in html class|id
+   * @returns {HTMLCanvasElement} 
+   */
+  static CreateCanvas(w,h,location){
+    Camera.Canvas = document.createElement('canvas')
+    Camera.Canvas.width = w
+    Camera.Canvas.height = h
+    Camera.Context = Camera.Canvas.getContext('2d')
+    if(location)
+        document.body.querySelector(location)?.append(Camera.Canvas)
+    else
+      document.body.append(Camera.Canvas)
+    return Camera.Canvas
   }
   /**pozitia din fereastra in world position
    * @param {Vector2} vec
@@ -61,5 +44,9 @@ class Camera extends Node{
       -(Camera.Main.x - vec.x),
       -(Camera.Main.y - vec.y)
     )
+  }
+  /**Cind sa incarcat tot documentul */
+  static Ready(callback){
+    document.addEventListener('DOMContentLoaded',callback)
   }
 }

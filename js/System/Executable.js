@@ -1,8 +1,6 @@
 import { CallFunctionOnArray} from "./FArray.js";
-import {Transform} from '../Vectors/Transform.js'
-export class IExecutable extends Transform{
-    constructor(x=0,y=0,autoExecute = true){
-      super(x,y)
+export class IExecutable{
+    constructor(autoExecute = true){
       if(autoExecute)
         Executable.Execute = this
     }
