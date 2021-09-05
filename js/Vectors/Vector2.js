@@ -1,5 +1,5 @@
 //======================================Vector
-export class Vector{
+class Vector{
   //get set x
   get x(){return this._x}
   set x(value){if(value)this._x = value}
@@ -11,7 +11,7 @@ export class Vector{
     this._y = y
   }
 }
-export class Vector2 extends Vector {
+class Vector2 extends Vector {
   constructor(x =0, y=0) {
     super(x,y)
   }
@@ -100,3 +100,6 @@ export class Vector2 extends Vector {
       throw new Error('type is unknow')
   }
 }
+
+
+export {Vector,Vector2}
