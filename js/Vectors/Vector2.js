@@ -11,7 +11,7 @@ class Vector{
     this._y = y
   }
 }
-class Vector2 extends Vector {
+export default class Vector2 extends Vector {
   constructor(x =0, y=0) {
     super(x,y)
   }
