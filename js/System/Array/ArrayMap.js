@@ -1,4 +1,4 @@
-import {Errors } from "./Eror/Eror.js"
+import {Errors } from "../Eror/Eror.js"
 
 export class ArrayMap{
     /**@param {boolean} instance daca true: se va permite de adaugat acelas tip de obect*/

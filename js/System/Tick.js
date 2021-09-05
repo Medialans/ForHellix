@@ -1,5 +1,5 @@
 /**Controlam daca a trecut o n secunde de interval*/
-export class Tick {
+export default class Tick {
   _time = 0
   _fps = 0
   Fps = 0
