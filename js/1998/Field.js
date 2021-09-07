@@ -1,11 +1,14 @@
 import Vector2 from "../Vector/Vector2.js"
 import Cell from "./Cell.js"
 import Random from "../System/Random.js"
+import InputTouch from "../Input/Touch.js"
 
 export default class Field{
   cellSize = new Vector2(80,80)
   cellCount = new Vector2(4,4)
   spawnCellCount = 3
+  touch = new InputTouch()
+  
   /**@type {Cell[]}*/
   cells = []
   get style(){
@@ -16,6 +19,9 @@ export default class Field{
   constructor(seed){
     this.rnd = new Random()
     this.Start()
+    this.touch.subscribe("move",(e)=>{
+      console.log(e.direction.x);
+    })
   }
   Start(){
     this.fieldSize = this.cellSize.Math("*",this.cellCount)
@@ -30,5 +36,6 @@ export default class Field{
       this.cells[index].num = 2
     }
   }
+
   
 }

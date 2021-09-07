@@ -1,5 +1,5 @@
 import Listener from "../System/Listener.js"
-
+import Vector2 from "../Vector/Vector2.js"
 
 export default class InputTouch{
   _listener = new Listener()
@@ -33,8 +33,8 @@ export default class InputTouch{
   touchMove(e){
     if(e.touches.length == 1){
       let movePoint = this.vector2FromTouch(e)
-      this.offset = movePoint.math("-",this.startPoint)
-      this.direction = this.offset.normalizeByStep(.01).math('floor')
+      this.offset = movePoint.Math("-",this.startPoint)
+      this.direction = this.offset.NormalizeByStep(.01).Math('floor')
       
       this._listener.emit("move",{
         startPoint:this.startPoint,

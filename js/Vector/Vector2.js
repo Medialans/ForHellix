@@ -56,6 +56,20 @@ export default class Vector2 extends Vector {
     }
     return new Vector2(x,y)
   }
+  Normalize(){
+    return new Vector2(
+      this.x>1?1:this.x<-1?-1:this.x,
+      this.y>1?1:this.y<-1?-1:this.y
+      )
+  }
+  NormalizeByStep(step=1){
+    return this.Dublicate()
+            .Math("*",new Vector2(step,step))
+            .Normalize()
+  }
+  Dublicate(){
+    return new Vector2(this.x,this.y)
+  }
 }
 
 
