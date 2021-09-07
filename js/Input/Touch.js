@@ -4,7 +4,6 @@ import Listener from "../System/Listener.js"
 export default class InputTouch{
   _listener = new Listener()
   
-  
   constructor(el="body"){
     
     let doc = document.querySelector(el)
@@ -13,12 +12,15 @@ export default class InputTouch{
     doc.addEventListener('touchend',this.touchEnd.bind(this))
   }
   /**
-  * @param {"start"|"move"|"end"} listener
+  * @param {"start"|"move"|"end"} listen
   * @param {({startPoint:Vector2,movePoint:Vector2,offset:Vector2,direction:Vector2})=>void} callback*/
-  subscribe(listener,callback){
-    this._listener.subscribe(listener,callback)
+  subscribe(listen,callback){
+    this._listener.subscribe(listen,callback)
   }
-  unsubscribe(callback){
+  /**
+  * @param {"start"|"move"|"end"} listen
+  * @param {Function} callback*/
+  unsubscribe(listen,callback){
     this._listener.unsubscribe(callback)
   }
   /**@param {TouchEvent} e*/
