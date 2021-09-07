@@ -56,6 +56,26 @@ export default class Vector2 extends Vector {
     }
     return new Vector2(x,y)
   }
+  /**
+   * @param {"<"|">"|"=="|"<="|">="|"!="} operation
+   * @param {Vector2} vector
+   * @param {"x"|"y"|"xy"} verific
+   * @returns {boolean|{x:boolean,y:boolean}}
+   */
+  Bool(operation,vector,verific = "xy"){
+    let boolMatch = operation.match(/(\=\=|\!\=|\<\=|\>\=|\<|\>)/)?.[0]
+    if(boolMatch == null) return false
+    
+    let exec = new Function(`
+      return {
+        x:${this.x}${boolMatch}${vector.x},
+        y:${this.y}${boolMatch}${vector.y}
+      }
+    `)()
+    
+    return verific == "xy"?exec:verific=="x"?exec.x:exec.y
+  }
+  
   Normalize(){
     return new Vector2(
       this.x>1?1:this.x<-1?-1:this.x,
@@ -71,6 +91,7 @@ export default class Vector2 extends Vector {
     return new Vector2(this.x,this.y)
   }
 }
+
 
 
 export {Vector,Vector2}

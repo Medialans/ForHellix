@@ -25,17 +25,30 @@ export default class Field{
   }
   Start(){
     this.fieldSize = this.cellSize.Math("*",this.cellCount)
-    this.cellCount = this.cellCount.x*this.cellCount.y
+    this.cellCounts = this.cellCount.x*this.cellCount.y
     //init cell
-    for(let i=0; i<this.cellCount; i++){
+    for(let i=0; i<this.cellCounts; i++){
       this.cells.push(new Cell(this,i))
     }
     //spaw cell
     for(let i=0; i<this.spawnCellCount; i++){
-      let index = this.rnd.nextRange(0,this.cellCount)
+      let index = this.rnd.nextRange(0,this.cellCounts)
       this.cells[index].num = 2
     }
+    var c = this.GetCell(new Vector2(9,0))
+    console.log(c);
   }
-
+  /**
+  * @param {Vector2} point
+  * @returns {Cell|null}
+  */
+  GetCell(point){
+    
+    let pos = point.x+(this.cellCount.x*point.y)
+    
+    if(pos<0||pos>this.cells.length)return null
+    
+    return this.cells[pos]
+  }
   
 }
