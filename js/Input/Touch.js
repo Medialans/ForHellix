@@ -1,8 +1,12 @@
-class InputTouch{
+import Listener from "../System/Listener.js"
+
+
+export default class InputTouch{
   _listener = new Listener()
   
   
   constructor(el="body"){
+    
     let doc = document.querySelector(el)
     doc.addEventListener('touchstart',this.touchStart.bind(this))
     doc.addEventListener('touchmove',this.touchMove.bind(this))
