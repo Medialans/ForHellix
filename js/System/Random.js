@@ -1,4 +1,4 @@
-
+import Vector2 from "../Vector/Vector2.js"
 export default class Random{
     _maxInt = 0x80000000
     _seedOffset = 27101998
@@ -19,5 +19,8 @@ export default class Random{
       let range = max-min
       let next = this.next() * range
       return min + Math.floor(next)
+    }
+    nextVector2(min = Vector2.Zero,max = Vector2.Any){
+      return new Vector2(this.nextRange(min.x,max.x),this.nextRange(min.y,max.y))
     }
   }

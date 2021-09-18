@@ -1,26 +1,32 @@
 import Field from "./Field.js"
+import Vector2 from "../Vector/Vector2.js"
+import CellData from "./CellData.js"
 
-export default class Cell{
-  num = 0
-  /**
-   * @param {Field} field
-   * @param {number} index
-   */
-  constructor(field,index){
-    this.field = field
-    this.index = index
+
+export default class Cell extends CellData{
+  /** @param {Field} field*/
+  constructor(field){
+    super(field)
+    this.FD = field
   }
-  get style(){
-    return {
-      width:  this.field.cellSize.x+"px",
-      height: this.field.cellSize.y+"px",
-      "background-color": this._genColor()
+  
+  Move(direction) {
+    let dir = direction.x != 0 ?
+      direction.x >= 0 ? this.FD.cellCount.x - this.location.x - 2 : this.location.x  :
+      direction.y >= 0 ? this.FD.cellCount.y - this.location.y - 1 : this.location.y
+    let loc = this.location
+    
+    for (let i = 0; i < dir; i++) {
+      loc = loc.Math("+",direction)
+      let cell = this.FD.getCell(loc)
+      if(cell)
+        cell.num += 2
+  
     }
+    this.FD.setCell()
   }
-  _genColor(){
-    if(this.num !=0){
-      return "#a4c678"
-    }
-    return "#ff6"
+
+  remove(){
+    this.cellElement.HtmlElement.remove()
   }
 }

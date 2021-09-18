@@ -10,7 +10,6 @@ export class ColisionLine{
         return (l1.x-l1.w)*(l2.y-l2.h)-(l1.y-l1.h)*(l2.x-l2.w)
     
     }
-    
     /**
      * @param {Rect} l1 
      * @param {Rect} l2 

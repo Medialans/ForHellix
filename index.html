@@ -5,45 +5,63 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Vue.js</title>
-
-  <!-- Vue.js -->
-  <script src="res/vue@2.6.12.js"></script>
+  <title>1998</title>
   <style>
     .map{
-      position: absolute;
       left: 50%;
       top: 50%;
+      transform: translate(-50%,-50%);
+      background-color: #8f6c4a;
+      padding: 6px;
+    }
+    .cell,.map{
+      position: absolute;
+    }
+    .cell,.map,.cellbg{
+      border-radius: 10px;
+    }
+    .fieldbg,.field{
+      position: absolute;
       display: flex;
       flex-flow: row;
       flex-wrap: wrap;
-      transform: translate(-50%,-50%);
-      border: 3px solid #acacac;
+      
     }
-    .cell {
+    .field{
+      z-index: 1000;
+    }
+    .cellbg{
+      background-color: #FFE5CB;
+      border-radius: 10px;
+    }
+    .cell{
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
       font-size: 24px;
-      font-weight: 700;
-      border: 3px solid #acacac;
-      box-sizing: border-box;
+      font-weight: bold;
+      color: #335c80;
+      border: 6px dotted #335C80;
+      background-color: #8AC7FE;
+      transition:  .5s;
     }
-    .num {
-    
-    
+    .cell,.cellbg{
+      box-sizing: border-box;
+      transform: scale(.95,.95)
+    }
+    .destroy{
+      opacity: 0;
+      transform: size(0,0);
+      background: color;
+      transition: 1s;
     }
   </style>
 
 </head>
 
 <body>
-  <div id="vue-app">
-    
-    <div class="map" v-bind:style="field.style">
-      <div class="cell" v-for="el of field.cells" v-bind:style="el.style" v-bind:class="{num : el.num>0}">{{el.num!=0?el.num:""}}</div>
-    </div>
-  </div>
+  <div id="root"></div>
   <!-- Project -->
   <script src="js/app.js" type="module"></script>
 </body>

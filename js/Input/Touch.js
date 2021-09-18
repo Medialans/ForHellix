@@ -3,13 +3,14 @@ import Vector2 from "../Vector/Vector2.js"
 
 export default class InputTouch{
   _listener = new Listener()
-  
-  constructor(el="body"){
+  stepDirection = .01
+  constructor(el){
     
-    let doc = document.querySelector(el)
-    doc.addEventListener('touchstart',this.touchStart.bind(this))
-    doc.addEventListener('touchmove',this.touchMove.bind(this))
-    doc.addEventListener('touchend',this.touchEnd.bind(this))
+    let doc = typeof el == "string"?document.querySelector(el):el
+    
+    doc?.addEventListener('touchstart',this.touchStart.bind(this))
+    doc?.addEventListener('touchmove',this.touchMove.bind(this))
+    doc?.addEventListener('touchend',this.touchEnd.bind(this))
   }
   /**
   * @param {"start"|"move"|"end"} listen
@@ -34,8 +35,7 @@ export default class InputTouch{
     if(e.touches.length == 1){
       let movePoint = this.vector2FromTouch(e)
       this.offset = movePoint.Math("-",this.startPoint)
-      this.direction = this.offset.NormalizeByStep(.01).Math('floor')
-      
+      this.direction = this.offset.NormalizeByStep(this.stepDirection).Math("ceil")
       this._listener.emit("move",{
         startPoint:this.startPoint,
         movePoint,
@@ -46,7 +46,7 @@ export default class InputTouch{
   }
   /**@param {TouchEvent} e*/
   touchEnd(e){
-    
+    this._listener.emit('end')
   }
   /**
    * @param {TouchEvent} touches*/
