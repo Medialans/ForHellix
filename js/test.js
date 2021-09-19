@@ -1,0 +1,1 @@
+console.log(alan,1998);
