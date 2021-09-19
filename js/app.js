@@ -1,4 +1,4 @@
-let cellCount = new Vector2(6,6)
+let cellCount = new Vector2(61,6)
 let cellSize  = new Vector2(60,60)
 let fieldSize = cellCount.math("*",cellSize)
 let rnd = new Random(1998)
